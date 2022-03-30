@@ -1,6 +1,10 @@
 {
   "keys": [
     {
+      "Key": "Modifier",
+      "Value": "CTRL"
+    },
+    {
       "Key": "D1",
       "Value": "Some Text to Pasted when clicking CTR+1"
     },

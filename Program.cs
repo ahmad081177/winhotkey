@@ -27,21 +27,18 @@ namespace Shortcuts
         {
             var handle = GetConsoleWindow();
 
-            HotKeyManager.RegisterHotKey(Keys.D1, KeyModifiers.Control);
-            HotKeyManager.RegisterHotKey(Keys.D2, KeyModifiers.Control);
-            HotKeyManager.RegisterHotKey(Keys.D3, KeyModifiers.Control);
-            HotKeyManager.RegisterHotKey(Keys.D4, KeyModifiers.Control);
-            HotKeyManager.RegisterHotKey(Keys.D0, KeyModifiers.Control);
-
-            ConfigKeysReader reader = new ConfigKeysReader("config.json");
+            //first read all shortcuts from the user
+            ConfigKeysReader reader = new ConfigKeysReader();// "config.json");
             shortcuts = reader.Entries;
-
+            //register shortcuts from config
+            ShortcutsUtils.RegisterHotKeys(shortcuts);
+            //listen to an event
             HotKeyManager.HotKeyPressed += new EventHandler<HotKeyEventArgs>(HotKeyManager_HotKeyPressed);
 
-            // Hide
+            // Hide the console window
             ShowWindow(handle, SW_HIDE);
-
-            //FreeConsole();
+            
+            // cause the console to wait and not end
             Console.ReadLine();
         }
 
@@ -90,7 +87,7 @@ namespace Shortcuts
         static void EvalKeyPressed(Keys key)
         {
             //map between key and shortcust
-            foreach (var s in shortcuts.keys)
+            foreach (var s in shortcuts.Keys)
             {
                 if(s.Key==key.ToString())
                 {

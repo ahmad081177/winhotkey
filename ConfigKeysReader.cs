@@ -18,30 +18,33 @@ namespace Shortcuts
     }
     public class Shortcuts
     {
-        public List<KeyValuePair<string,string>> keys { get; set; }
+        public List<KeyValuePair<string,string>> Keys { get; set; }
     }
     public class ConfigKeysReader
     {
         public Shortcuts Entries { get; private set; }
-        public ConfigKeysReader(string fname)
+        public ConfigKeysReader()
         {
             ReadusingFromAppSettings();
-            //ReadusingFromConfigFile(fname);
+        }
+        public ConfigKeysReader(string fname)
+        {
+            ReadusingFromConfigFile(fname);
         }
         void ReadusingFromAppSettings()
         {
             Entries = new Shortcuts();
-            Entries.keys = new List<KeyValuePair<string, string>>();
+            Entries.Keys = new List<KeyValuePair<string, string>>();
             foreach (string key in ConfigurationManager.AppSettings.AllKeys)
             {
-                Entries.keys.Add(new KeyValuePair<string, string>(key, ConfigurationManager.AppSettings[key]));
+                Entries.Keys.Add(new KeyValuePair<string, string>(key, ConfigurationManager.AppSettings[key]));
             }
         }
         void ReadusingFromConfigFile(string fname) 
         {
             //string jsontext = File.ReadAllText(fname);
-            //using results = Newtonsoft.Json.JsonConvert.DeserializeObject<using>(jsontext);
-            //if(results!=null)
+            //using results = Newtonsoft.Json.JsonConvert.DeserializeObject <using> (jsontext);
+            //if (results != null)
             //{
             //    Entries = results;
             //}
