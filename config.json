@@ -1,0 +1,12 @@
+{
+  "keys": [
+    {
+      "Key": "D1",
+      "Value": "Some Text to Pasted when clicking CTR+1"
+    },
+    {
+      "Key": "D2",
+      "Value": "Some Text to Pasted when clicking CTR+2"
+    }
+  ]
+}
